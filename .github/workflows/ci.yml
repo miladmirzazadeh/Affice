@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Typecheck, build and test (Node 22)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install the dependencies (including the vendored Trella workspaces)
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # Builds Trella, the page and the server bundle into dist/. The launcher and Trella
+      # service tests run against these files and are skipped without them.
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm test
+
+      - name: Launcher smoke test
+        run: |
+          node bin/affice.js --version
+          node bin/affice.js --help

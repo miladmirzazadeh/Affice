@@ -1,0 +1,34 @@
+{
+  "name": "@trella/mcp",
+  "version": "0.1.0",
+  "description": "Trella MCP server: semantic task tools backed by the local Trella service.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "trella-mcp": "./bin/trella-mcp.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.13.0",
+    "@trella/core": "0.1.0",
+    "zod": "^3.24.1"
+  }
+}

@@ -1,0 +1,101 @@
+/* The project picker (client/ui/setup/project.ts): in the setup gate and, as a dialog, from the lobby menu.
+   Rules for this screen only, all under .setup-project, .project-* or .browse-*. */
+
+.setup-project { gap: 16px; min-width: 0; }
+.project-group { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.project-list { display: flex; flex-direction: column; gap: 4px; max-height: 188px; margin: 0; padding: 0; overflow-y: auto; list-style: none; }
+
+.project-row {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  text-align: left;
+  transition: background-color var(--fast) ease;
+}
+.project-row:hover { background: var(--surface-3); }
+.project-line { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; min-width: 0; }
+.project-name { min-width: 0; overflow: hidden; font-size: var(--text-base); font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+.project-path { flex: 1; min-width: 0; contain: inline-size; overflow: hidden; color: var(--text-faint); font-family: var(--mono); font-size: var(--text-xs); text-overflow: ellipsis; white-space: nowrap; }
+.project-used { flex: none; color: var(--text-faint); font-size: var(--text-xs); white-space: nowrap; }
+.project-badge {
+  flex: none;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+.project-note { color: var(--text); }
+
+/* The folder browser. */
+.project-browse { gap: 10px; }
+.project-browse > .btn { align-self: flex-start; }
+.browse-panel { display: flex; flex-direction: column; gap: 10px; padding: 12px; border-radius: var(--radius); background: var(--bg); box-shadow: inset 0 0 0 1px var(--line); }
+.browse-panel[aria-busy='true'] .browse-list { opacity: 0.6; }
+.browse-bar { display: flex; align-items: center; gap: 8px; min-width: 0; }
+/* contain: inline-size keeps a long path from widening the card: its own width does not count for the parents. */
+.browse-crumbs { display: flex; flex: 1; align-items: center; min-width: 0; overflow-x: auto; scrollbar-width: none; white-space: nowrap; contain: inline-size; }
+.browse-crumbs::-webkit-scrollbar { display: none; }
+.browse-crumb { flex: none; padding: 4px 6px; border: 0; border-radius: 6px; background: transparent; color: var(--text-dim); font-size: var(--text-sm); }
+button.browse-crumb:hover { background: var(--surface-2); color: var(--text); }
+.browse-crumb--here { color: var(--text); font-weight: 600; }
+.browse-crumb + .browse-crumb::before { content: '/'; margin-right: 6px; color: var(--text-faint); }
+.browse-crumb:first-child + .browse-crumb::before { content: none; }
+.browse-hidden { display: inline-flex; flex: none; align-items: center; gap: 6px; color: var(--text-dim); font-size: var(--text-sm); cursor: pointer; }
+.browse-hidden input { margin: 0; accent-color: var(--accent); cursor: pointer; }
+
+.browse-list { display: flex; flex-direction: column; gap: 2px; height: 216px; margin: 0; padding: 0; overflow-y: auto; list-style: none; }
+.browse-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+  transition: background-color var(--fast) ease;
+}
+.browse-row:hover { background: var(--surface-2); }
+.browse-folder { flex: none; position: relative; width: 14px; height: 10px; border-radius: 2px 2px 3px 3px; background: var(--text-faint); }
+.browse-folder::before { content: ''; position: absolute; left: 0; top: -3px; width: 6px; height: 4px; border-radius: 2px 2px 0 0; background: var(--text-faint); }
+.browse-name { flex: 1; min-width: 0; overflow: hidden; font-size: var(--text-md); text-overflow: ellipsis; white-space: nowrap; }
+.browse-empty { padding: 8px 10px; color: var(--text-faint); font-size: var(--text-sm); }
+.browse-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 4px; border-top: 1px solid var(--line); }
+.browse-current { min-width: 0; contain: inline-size; flex: 1; overflow: hidden; color: var(--text-dim); font-family: var(--mono); font-size: var(--text-xs); text-overflow: ellipsis; white-space: nowrap; }
+
+/* The picker as a dialog, opened from the lobby menu. */
+.project-dialog {
+  --form-accent: var(--accent);
+  width: min(520px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 48px);
+  padding: 28px;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-panel);
+  overflow-y: auto;
+  /* #ui passes clicks through to the scene; the dialog takes them back. */
+  pointer-events: auto;
+}
+.project-dialog[open] { display: block; animation: project-dialog-in 200ms var(--ease-out); }
+.project-dialog::backdrop { background: rgba(8, 9, 13, 0.62); }
+.project-dialog-close { position: absolute; top: 14px; right: 14px; }
+@keyframes project-dialog-in { from { opacity: 0; transform: translateY(6px) scale(0.99); } }
+
+@media (max-width: 899px) {
+  .project-dialog { width: 100vw; max-height: 100dvh; height: 100dvh; border-radius: 0; padding: 22px 18px; }
+  .browse-bar { flex-wrap: wrap; }
+  .browse-crumbs { order: 3; flex-basis: 100%; }
+}

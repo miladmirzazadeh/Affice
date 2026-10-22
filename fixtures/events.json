@@ -1,0 +1,674 @@
+[
+ {
+  "at": 0,
+  "event": {
+   "type": "office.state",
+   "snapshot": {
+    "config": {
+     "version": 1,
+     "company": "Acme Studio",
+     "trellaUrl": "http://127.0.0.1:4174",
+     "departments": [
+      {
+       "id": "general",
+       "kind": "lobby",
+       "name": "General manager",
+       "color": "stone",
+       "responsibility": "Answers general questions and asks the department managers.",
+       "cwd": "/projects/acme-studio",
+       "model": "claude-opus-5-5",
+       "permission": "read-only",
+       "repos": [],
+       "reportDirs": [
+        "reports"
+       ],
+       "trellaBoardId": "bd_mock_general",
+       "sessionId": null,
+       "slot": -1,
+       "createdAt": "2026-10-18T08:00:00.000Z"
+      },
+      {
+       "id": "engineering",
+       "name": "Engineering",
+       "color": "indigo",
+       "responsibility": "Builds and maintains the product.",
+       "cwd": "/projects/acme-studio",
+       "model": "claude-opus-5-5",
+       "permission": "ask",
+       "repos": [
+        {
+         "name": "api",
+         "path": "api",
+         "base": "main"
+        }
+       ],
+       "reportDirs": [
+        "reports"
+       ],
+       "trellaBoardId": "bd_mock_engineering",
+       "sessionId": "0a1b2c3d-mock",
+       "slot": 0,
+       "createdAt": "2026-10-17T13:00:00.000Z"
+      },
+      {
+       "id": "marketing",
+       "name": "Marketing",
+       "color": "rose",
+       "responsibility": "Writes the launch post and the newsletter.",
+       "cwd": "/projects/acme-studio",
+       "model": "claude-sonnet-5-5",
+       "permission": "read-only",
+       "repos": [],
+       "reportDirs": [],
+       "trellaBoardId": null,
+       "sessionId": null,
+       "slot": 1,
+       "createdAt": "2026-10-17T13:05:00.000Z"
+      }
+     ]
+    },
+    "sessions": [
+     {
+      "department": "general",
+      "status": "ready",
+      "sessionId": "9f8e-mock",
+      "model": "claude-opus-5-5",
+      "startedAt": "2026-10-18T08:00:00.000Z",
+      "error": null,
+      "bypass": false
+     },
+     {
+      "department": "engineering",
+      "status": "ready",
+      "sessionId": "0a1b2c3d-mock",
+      "model": "claude-opus-5-5",
+      "startedAt": "2026-10-17T13:10:00.000Z",
+      "error": null,
+      "bypass": false
+     },
+     {
+      "department": "marketing",
+      "status": "off",
+      "sessionId": null,
+      "model": null,
+      "startedAt": null,
+      "error": null,
+      "bypass": false
+     }
+    ],
+    "agents": [
+     {
+      "id": "manager:general",
+      "department": "general",
+      "kind": "manager",
+      "title": "General manager",
+      "cardKey": null,
+      "model": "claude-opus-5-5",
+      "status": "idle",
+      "currentTool": null,
+      "lastText": null,
+      "startedAt": "2026-10-18T08:00:00.000Z",
+      "endedAt": null,
+      "parentToolUseId": null
+     },
+     {
+      "id": "manager:engineering",
+      "department": "engineering",
+      "kind": "manager",
+      "title": "Engineering manager",
+      "cardKey": null,
+      "model": "claude-opus-5-5",
+      "status": "idle",
+      "currentTool": null,
+      "lastText": null,
+      "startedAt": "2026-10-17T13:10:00.000Z",
+      "endedAt": null,
+      "parentToolUseId": null
+     },
+     {
+      "id": "manager:marketing",
+      "department": "marketing",
+      "kind": "manager",
+      "title": "Marketing manager",
+      "cardKey": null,
+      "model": "claude-sonnet-5-5",
+      "status": "idle",
+      "currentTool": null,
+      "lastText": null,
+      "startedAt": "2026-10-17T13:05:00.000Z",
+      "endedAt": null,
+      "parentToolUseId": null
+     }
+    ],
+    "messages": [
+     {
+      "id": "m1",
+      "department": "engineering",
+      "role": "user",
+      "text": "Where are we on the launch tasks?",
+      "at": "2026-10-17T13:11:00.000Z",
+      "streaming": false
+     },
+     {
+      "id": "m2",
+      "department": "engineering",
+      "role": "manager",
+      "text": "Four cards are ready for the launch (ENG-4 to ENG-7). None is claimed yet. I can start ENG-4 and ENG-5 now; they have no dependencies.",
+      "at": "2026-10-17T13:11:20.000Z",
+      "streaming": false
+     }
+    ],
+    "permissions": []
+   }
+  }
+ },
+ {
+  "at": 1500,
+  "event": {
+   "type": "chat.message",
+   "message": {
+    "id": "m3",
+    "department": "engineering",
+    "role": "user",
+    "text": "Go. Start ENG-4 and ENG-5 in parallel.",
+    "at": "2026-10-17T13:12:00.000Z",
+    "streaming": false
+   }
+  }
+ },
+ {
+  "at": 2000,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "manager:engineering",
+    "department": "engineering",
+    "kind": "manager",
+    "title": "Engineering manager",
+    "cardKey": null,
+    "model": "claude-opus-5-5",
+    "status": "thinking",
+    "currentTool": null,
+    "lastText": null,
+    "startedAt": "2026-10-17T13:10:00.000Z",
+    "endedAt": null,
+    "parentToolUseId": null
+   }
+  }
+ },
+ {
+  "at": 2600,
+  "event": {
+   "type": "chat.delta",
+   "department": "engineering",
+   "messageId": "m4",
+   "text": "Starting both. "
+  }
+ },
+ {
+  "at": 3000,
+  "event": {
+   "type": "chat.delta",
+   "department": "engineering",
+   "messageId": "m4",
+   "text": "ENG-4 goes to a Sonnet subagent in api, "
+  }
+ },
+ {
+  "at": 3400,
+  "event": {
+   "type": "chat.delta",
+   "department": "engineering",
+   "messageId": "m4",
+   "text": "ENG-5 to a Haiku subagent in web."
+  }
+ },
+ {
+  "at": 3600,
+  "event": {
+   "type": "chat.done",
+   "department": "engineering",
+   "messageId": "m4"
+  }
+ },
+ {
+  "at": 3800,
+  "event": {
+   "type": "tool.started",
+   "department": "engineering",
+   "agentId": "manager:engineering",
+   "toolUseId": "toolu_01",
+   "name": "mcp__trella__claim_task",
+   "summary": "Claim ENG-4"
+  }
+ },
+ {
+  "at": 4200,
+  "event": {
+   "type": "tool.finished",
+   "department": "engineering",
+   "agentId": "manager:engineering",
+   "toolUseId": "toolu_01",
+   "ok": true
+  }
+ },
+ {
+  "at": 4500,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "task_a1",
+    "department": "engineering",
+    "kind": "subagent",
+    "title": "ENG-4 Add a search box",
+    "cardKey": "ENG-4",
+    "model": "claude-sonnet-5-5",
+    "status": "arriving",
+    "currentTool": null,
+    "lastText": null,
+    "startedAt": "2026-10-17T13:12:10.000Z",
+    "endedAt": null,
+    "parentToolUseId": "toolu_02"
+   }
+  }
+ },
+ {
+  "at": 5200,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "task_b2",
+    "department": "engineering",
+    "kind": "subagent",
+    "title": "ENG-5 Fix the date format in the invoice list",
+    "cardKey": "ENG-5",
+    "model": "claude-haiku-5-5",
+    "status": "arriving",
+    "currentTool": null,
+    "lastText": null,
+    "startedAt": "2026-10-17T13:12:11.000Z",
+    "endedAt": null,
+    "parentToolUseId": "toolu_03"
+   }
+  }
+ },
+ {
+  "at": 6000,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "manager:engineering",
+    "department": "engineering",
+    "kind": "manager",
+    "title": "Engineering manager",
+    "cardKey": null,
+    "model": "claude-opus-5-5",
+    "status": "working",
+    "currentTool": null,
+    "lastText": "Two subagents are on it.",
+    "startedAt": "2026-10-17T13:10:00.000Z",
+    "endedAt": null,
+    "parentToolUseId": null
+   }
+  }
+ },
+ {
+  "at": 7000,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "task_a1",
+    "department": "engineering",
+    "kind": "subagent",
+    "title": "ENG-4 Add a search box",
+    "cardKey": "ENG-4",
+    "model": "claude-sonnet-5-5",
+    "status": "working",
+    "currentTool": "Read",
+    "lastText": null,
+    "startedAt": "2026-10-17T13:12:10.000Z",
+    "endedAt": null,
+    "parentToolUseId": "toolu_02"
+   }
+  }
+ },
+ {
+  "at": 7600,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "task_b2",
+    "department": "engineering",
+    "kind": "subagent",
+    "title": "ENG-5 Fix the date format in the invoice list",
+    "cardKey": "ENG-5",
+    "model": "claude-haiku-5-5",
+    "status": "working",
+    "currentTool": "Grep",
+    "lastText": null,
+    "startedAt": "2026-10-17T13:12:11.000Z",
+    "endedAt": null,
+    "parentToolUseId": "toolu_03"
+   }
+  }
+ },
+ {
+  "at": 9000,
+  "event": {
+   "type": "tool.started",
+   "department": "engineering",
+   "agentId": "task_a1",
+   "toolUseId": "toolu_11",
+   "name": "Edit",
+   "summary": "Edit api/search/views.py"
+  }
+ },
+ {
+  "at": 9100,
+  "event": {
+   "type": "permission.requested",
+   "request": {
+    "id": "perm_1",
+    "department": "engineering",
+    "agentId": "task_a1",
+    "tool": "Edit",
+    "input": {
+     "file_path": "/projects/acme-studio/api/search/views.py"
+    },
+    "summary": "Edit api/search/views.py",
+    "at": "2026-10-17T13:12:30.000Z"
+   }
+  }
+ },
+ {
+  "at": 11000,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "task_c3",
+    "department": "engineering",
+    "kind": "subagent",
+    "title": "Run the api tests",
+    "cardKey": "ENG-4",
+    "model": "claude-haiku-5-5",
+    "status": "arriving",
+    "currentTool": null,
+    "lastText": null,
+    "startedAt": "2026-10-17T13:12:40.000Z",
+    "endedAt": null,
+    "parentToolUseId": "toolu_04"
+   }
+  }
+ },
+ {
+  "at": 12500,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "task_c3",
+    "department": "engineering",
+    "kind": "subagent",
+    "title": "Run the api tests",
+    "cardKey": "ENG-4",
+    "model": "claude-haiku-5-5",
+    "status": "working",
+    "currentTool": "Bash",
+    "lastText": "Running pytest",
+    "startedAt": "2026-10-17T13:12:40.000Z",
+    "endedAt": null,
+    "parentToolUseId": "toolu_04"
+   }
+  }
+ },
+ {
+  "at": 15000,
+  "event": {
+   "type": "tool.finished",
+   "department": "engineering",
+   "agentId": "task_b2",
+   "toolUseId": "toolu_12",
+   "ok": true
+  }
+ },
+ {
+  "at": 16000,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "task_b2",
+    "department": "engineering",
+    "kind": "subagent",
+    "title": "ENG-5 Fix the date format in the invoice list",
+    "cardKey": "ENG-5",
+    "model": "claude-haiku-5-5",
+    "status": "done",
+    "currentTool": null,
+    "lastText": "Date format fixed, checked in the browser.",
+    "startedAt": "2026-10-17T13:12:11.000Z",
+    "endedAt": "2026-10-17T13:13:00.000Z",
+    "parentToolUseId": "toolu_03"
+   }
+  }
+ },
+ {
+  "at": 18000,
+  "event": {
+   "type": "turn.result",
+   "department": "engineering",
+   "costUsd": 0.42,
+   "turns": 6,
+   "durationMs": 60000
+  }
+ },
+ {
+  "at": 20000,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "task_c3",
+    "department": "engineering",
+    "kind": "subagent",
+    "title": "Run the api tests",
+    "cardKey": "ENG-4",
+    "model": "claude-haiku-5-5",
+    "status": "failed",
+    "currentTool": null,
+    "lastText": "2 tests failed in test_search.py",
+    "startedAt": "2026-10-17T13:12:40.000Z",
+    "endedAt": "2026-10-17T13:13:20.000Z",
+    "parentToolUseId": "toolu_04"
+   }
+  }
+ },
+ {
+  "at": 24000,
+  "event": {
+   "type": "agent.removed",
+   "id": "task_b2"
+  }
+ },
+ {
+  "at": 26000,
+  "event": {
+   "type": "chat.message",
+   "message": {
+    "id": "m5",
+    "department": "engineering",
+    "role": "manager",
+    "text": "ENG-5 is done and moved to Review. ENG-4 waits for your approval of the edit; its test run found two failures in test_search.py that were failing before (noted on the card).",
+    "at": "2026-10-17T13:13:30.000Z",
+    "streaming": false
+   }
+  }
+ },
+ {
+  "at": 26200,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "manager:engineering",
+    "department": "engineering",
+    "kind": "manager",
+    "title": "Engineering manager",
+    "cardKey": null,
+    "model": "claude-opus-5-5",
+    "status": "idle",
+    "currentTool": null,
+    "lastText": "ENG-5 is in Review.",
+    "startedAt": "2026-10-17T13:10:00.000Z",
+    "endedAt": null,
+    "parentToolUseId": null
+   }
+  }
+ },
+ {
+  "at": 27000,
+  "event": {
+   "type": "chat.message",
+   "message": {
+    "id": "g1",
+    "department": "general",
+    "role": "user",
+    "text": "What is blocking the launch right now?",
+    "at": "2026-10-18T08:01:00.000Z",
+    "streaming": false
+   }
+  }
+ },
+ {
+  "at": 27400,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "manager:general",
+    "department": "general",
+    "kind": "manager",
+    "title": "General manager",
+    "cardKey": null,
+    "model": "claude-opus-5-5",
+    "status": "thinking",
+    "currentTool": null,
+    "lastText": null,
+    "startedAt": "2026-10-18T08:00:00.000Z",
+    "endedAt": null,
+    "parentToolUseId": null
+   }
+  }
+ },
+ {
+  "at": 28000,
+  "event": {
+   "type": "tool.started",
+   "department": "general",
+   "agentId": "manager:general",
+   "toolUseId": "toolu_g1",
+   "name": "mcp__office__ask_manager",
+   "summary": "Ask the Engineering manager"
+  }
+ },
+ {
+  "at": 28050,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "manager:general",
+    "department": "general",
+    "kind": "manager",
+    "title": "General manager",
+    "cardKey": null,
+    "model": "claude-opus-5-5",
+    "status": "working",
+    "currentTool": "mcp__office__ask_manager",
+    "lastText": null,
+    "startedAt": "2026-10-18T08:00:00.000Z",
+    "endedAt": null,
+    "parentToolUseId": null
+   }
+  }
+ },
+ {
+  "at": 28300,
+  "event": {
+   "type": "chat.message",
+   "message": {
+    "id": "d9",
+    "department": "engineering",
+    "role": "colleague",
+    "text": "Which launch tasks are still open, and who is on them?",
+    "at": "2026-10-18T08:01:05.000Z",
+    "streaming": false,
+    "fromName": "General manager"
+   }
+  }
+ },
+ {
+  "at": 30500,
+  "event": {
+   "type": "chat.message",
+   "message": {
+    "id": "d10",
+    "department": "engineering",
+    "role": "manager",
+    "text": "Three launch tasks are open (ENG-4, ENG-6, ENG-7); ENG-5 is in Review. Nobody holds ENG-6 and ENG-7.",
+    "at": "2026-10-18T08:01:20.000Z",
+    "streaming": false
+   }
+  }
+ },
+ {
+  "at": 30800,
+  "event": {
+   "type": "tool.finished",
+   "department": "general",
+   "agentId": "manager:general",
+   "toolUseId": "toolu_g1",
+   "ok": true
+  }
+ },
+ {
+  "at": 31200,
+  "event": {
+   "type": "chat.delta",
+   "department": "general",
+   "messageId": "g2",
+   "text": "Two things. MKT-2 Draft the launch post has no owner yet, "
+  }
+ },
+ {
+  "at": 31700,
+  "event": {
+   "type": "chat.delta",
+   "department": "general",
+   "messageId": "g2",
+   "text": "and two engineering cards that block the launch are unclaimed, per the Engineering manager."
+  }
+ },
+ {
+  "at": 31900,
+  "event": {
+   "type": "chat.done",
+   "department": "general",
+   "messageId": "g2"
+  }
+ },
+ {
+  "at": 32000,
+  "event": {
+   "type": "agent.upsert",
+   "agent": {
+    "id": "manager:general",
+    "department": "general",
+    "kind": "manager",
+    "title": "General manager",
+    "cardKey": null,
+    "model": "claude-opus-5-5",
+    "status": "idle",
+    "currentTool": null,
+    "lastText": "Launch post and two open tasks.",
+    "startedAt": "2026-10-18T08:00:00.000Z",
+    "endedAt": null,
+    "parentToolUseId": null
+   }
+  }
+ }
+]

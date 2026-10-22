@@ -1,0 +1,35 @@
+{
+  "name": "trella-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Trella — a local-first collaborative task board for humans and AI agents.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "workspaces": [
+    "packages/core",
+    "packages/server",
+    "packages/mcp",
+    "packages/cli",
+    "apps/web"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace @trella/core && npm run build --workspace @trella/server && npm run build --workspace @trella/mcp && npm run build --workspace trella && npm run build --workspace @trella/web",
+    "dev": "node scripts/dev.js",
+    "test": "npm run test --workspace @trella/core && npm run test --workspace @trella/server",
+    "typecheck": "tsc --build --force",
+    "clean": "rm -rf packages/*/dist apps/web/dist packages/*/tsconfig.tsbuildinfo",
+    "tokens": "node scripts/design-tokens.mjs",
+    "tokens:check": "node scripts/design-tokens.mjs --check",
+    "start": "node packages/cli/bin/trella.js start",
+    "trella": "node packages/cli/bin/trella.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^4.1.10"
+  }
+}

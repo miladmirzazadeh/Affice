@@ -1,0 +1,7 @@
+node_modules/
+dist/
+# runtime state the server writes: departments, session ids, chat history (the root data folder only, server/data is source)
+/data/
+*.tsbuildinfo
+# a Trella workspace created at the default office root
+.agentboard/

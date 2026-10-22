@@ -1,0 +1,36 @@
+{
+  "name": "trella",
+  "version": "0.1.0",
+  "description": "Trella — a local-first collaborative task board for humans and AI agents.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "trella": "./bin/trella.js"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "keywords": [
+    "kanban",
+    "task-board",
+    "local-first",
+    "agents",
+    "mcp",
+    "cli"
+  ],
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -p tsconfig.json --watch"
+  },
+  "dependencies": {
+    "@trella/core": "0.1.0",
+    "@trella/mcp": "0.1.0",
+    "@trella/server": "0.1.0"
+  }
+}

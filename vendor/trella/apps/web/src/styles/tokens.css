@@ -1,0 +1,290 @@
+/*
+ * GENERATED FILE — do not edit by hand.
+ * Run `npm run tokens` after changing scripts/design-tokens.mjs.
+ *
+ * Ramps are OKLCH with chroma expressed as a percentage of the maximum in-gamut
+ * chroma at each lightness, so every step is displayable and hues stay equally
+ * vivid relative to one another. Contrast for every rendered pair is measured by
+ * `npm run tokens:check`.
+ */
+
+@theme {
+  --color-bone-50: oklch(0.99 0.003 70);
+  --color-bone-100: oklch(0.976 0.004 70);
+  --color-bone-150: oklch(0.96 0.005 70);
+  --color-bone-200: oklch(0.938 0.006 70);
+  --color-bone-300: oklch(0.894 0.007 70);
+  --color-bone-400: oklch(0.8 0.008 70);
+  --color-bone-500: oklch(0.688 0.009 70);
+  --color-bone-600: oklch(0.525 0.01 70);
+  --color-bone-700: oklch(0.452 0.01 70);
+  --color-bone-800: oklch(0.352 0.01 70);
+  --color-bone-850: oklch(0.288 0.009 70);
+  --color-bone-900: oklch(0.232 0.008 70);
+  --color-bone-950: oklch(0.18 0.007 70);
+  --color-bone-1000: oklch(0.135 0.006 70);
+
+  --color-verdigris-50: oklch(0.972 0.006 197);
+  --color-verdigris-100: oklch(0.94 0.026 197);
+  --color-verdigris-200: oklch(0.888 0.073 197);
+  --color-verdigris-300: oklch(0.822 0.09 197);
+  --color-verdigris-400: oklch(0.748 0.099 197);
+  --color-verdigris-500: oklch(0.66 0.099 197);
+  --color-verdigris-600: oklch(0.566 0.089 197);
+  --color-verdigris-700: oklch(0.478 0.073 197);
+  --color-verdigris-800: oklch(0.398 0.056 197);
+  --color-verdigris-900: oklch(0.325 0.039 197);
+  --color-verdigris-950: oklch(0.252 0.025 197);
+
+  --color-rust-50: oklch(0.972 0.002 25);
+  --color-rust-100: oklch(0.94 0.009 25);
+  --color-rust-200: oklch(0.888 0.028 25);
+  --color-rust-300: oklch(0.822 0.064 25);
+  --color-rust-400: oklch(0.748 0.119 25);
+  --color-rust-500: oklch(0.66 0.199 25);
+  --color-rust-600: oklch(0.566 0.211 25);
+  --color-rust-700: oklch(0.478 0.175 25);
+  --color-rust-800: oklch(0.398 0.132 25);
+  --color-rust-900: oklch(0.325 0.092 25);
+  --color-rust-950: oklch(0.252 0.06 25);
+
+  --color-clay-50: oklch(0.972 0.003 55);
+  --color-clay-100: oklch(0.94 0.011 55);
+  --color-clay-200: oklch(0.888 0.033 55);
+  --color-clay-300: oklch(0.822 0.074 55);
+  --color-clay-400: oklch(0.748 0.137 55);
+  --color-clay-500: oklch(0.66 0.144 55);
+  --color-clay-600: oklch(0.566 0.129 55);
+  --color-clay-700: oklch(0.478 0.107 55);
+  --color-clay-800: oklch(0.398 0.081 55);
+  --color-clay-900: oklch(0.325 0.057 55);
+  --color-clay-950: oklch(0.252 0.037 55);
+
+  --color-amber-50: oklch(0.972 0.005 85);
+  --color-amber-100: oklch(0.94 0.019 85);
+  --color-amber-200: oklch(0.888 0.058 85);
+  --color-amber-300: oklch(0.822 0.108 85);
+  --color-amber-400: oklch(0.748 0.12 85);
+  --color-amber-500: oklch(0.66 0.119 85);
+  --color-amber-600: oklch(0.566 0.107 85);
+  --color-amber-700: oklch(0.478 0.088 85);
+  --color-amber-800: oklch(0.398 0.067 85);
+  --color-amber-900: oklch(0.325 0.047 85);
+  --color-amber-950: oklch(0.252 0.03 85);
+
+  --color-moss-50: oklch(0.972 0.008 145);
+  --color-moss-100: oklch(0.94 0.032 145);
+  --color-moss-200: oklch(0.888 0.108 145);
+  --color-moss-300: oklch(0.822 0.165 145);
+  --color-moss-400: oklch(0.748 0.184 145);
+  --color-moss-500: oklch(0.66 0.183 145);
+  --color-moss-600: oklch(0.566 0.164 145);
+  --color-moss-700: oklch(0.478 0.135 145);
+  --color-moss-800: oklch(0.398 0.103 145);
+  --color-moss-900: oklch(0.325 0.072 145);
+  --color-moss-950: oklch(0.252 0.046 145);
+
+  --color-sky-50: oklch(0.972 0.003 225);
+  --color-sky-100: oklch(0.94 0.012 225);
+  --color-sky-200: oklch(0.888 0.035 225);
+  --color-sky-300: oklch(0.822 0.077 225);
+  --color-sky-400: oklch(0.748 0.111 225);
+  --color-sky-500: oklch(0.66 0.11 225);
+  --color-sky-600: oklch(0.566 0.099 225);
+  --color-sky-700: oklch(0.478 0.082 225);
+  --color-sky-800: oklch(0.398 0.062 225);
+  --color-sky-900: oklch(0.325 0.043 225);
+  --color-sky-950: oklch(0.252 0.028 225);
+
+  --color-indigo-50: oklch(0.972 0.002 275);
+  --color-indigo-100: oklch(0.94 0.009 275);
+  --color-indigo-200: oklch(0.888 0.026 275);
+  --color-indigo-300: oklch(0.822 0.057 275);
+  --color-indigo-400: oklch(0.748 0.101 275);
+  --color-indigo-500: oklch(0.66 0.16 275);
+  --color-indigo-600: oklch(0.566 0.221 275);
+  --color-indigo-700: oklch(0.478 0.269 275);
+  --color-indigo-800: oklch(0.398 0.205 275);
+  --color-indigo-900: oklch(0.325 0.143 275);
+  --color-indigo-950: oklch(0.252 0.092 275);
+
+  --color-plum-50: oklch(0.972 0.003 320);
+  --color-plum-100: oklch(0.94 0.014 320);
+  --color-plum-200: oklch(0.888 0.043 320);
+  --color-plum-300: oklch(0.822 0.093 320);
+  --color-plum-400: oklch(0.748 0.166 320);
+  --color-plum-500: oklch(0.66 0.263 320);
+  --color-plum-600: oklch(0.566 0.25 320);
+  --color-plum-700: oklch(0.478 0.207 320);
+  --color-plum-800: oklch(0.398 0.157 320);
+  --color-plum-900: oklch(0.325 0.109 320);
+  --color-plum-950: oklch(0.252 0.071 320);
+
+  --color-rose-50: oklch(0.972 0.002 355);
+  --color-rose-100: oklch(0.94 0.01 355);
+  --color-rose-200: oklch(0.888 0.032 355);
+  --color-rose-300: oklch(0.822 0.072 355);
+  --color-rose-400: oklch(0.748 0.135 355);
+  --color-rose-500: oklch(0.66 0.229 355);
+  --color-rose-600: oklch(0.566 0.214 355);
+  --color-rose-700: oklch(0.478 0.177 355);
+  --color-rose-800: oklch(0.398 0.134 355);
+  --color-rose-900: oklch(0.325 0.094 355);
+  --color-rose-950: oklch(0.252 0.06 355);
+}
+
+/* Role tokens. Utilities read these through the @theme inline block below, so a
+   single class follows the appearance without a dark: variant at every call site. */
+:root {
+  --surface-canvas: oklch(0.96 0.005 70);
+  --surface-sunken: oklch(0.938 0.006 70);
+  --surface-raised: oklch(0.99 0.003 70);
+  --surface-overlay: oklch(0.99 0.003 70);
+  --surface-inset: oklch(0.96 0.005 70);
+  --surface-chrome: oklch(0.976 0.004 70);
+  --text-primary: oklch(0.18 0.007 70);
+  --text-secondary: oklch(0.452 0.01 70);
+  --text-tertiary: oklch(0.525 0.01 70);
+  --text-on-accent: oklch(1 0 0);
+  --text-on-danger: oklch(1 0 0);
+  --accent-text: oklch(0.478 0.073 197);
+  --accent-solid: oklch(0.478 0.073 197);
+  --accent-solid-hover: oklch(0.398 0.056 197);
+  --accent-soft: oklch(0.972 0.006 197);
+  --accent-soft-text: oklch(0.325 0.039 197);
+  --danger-text: oklch(0.478 0.175 25);
+  --danger-solid: oklch(0.478 0.175 25);
+  --danger-soft: oklch(0.972 0.002 25);
+  --danger-soft-text: oklch(0.325 0.092 25);
+  --caution-text: oklch(0.398 0.081 55);
+  --caution-soft: oklch(0.972 0.003 55);
+  --caution-line: oklch(0.822 0.074 55);
+  --separator: oklch(0.894 0.007 70);
+  --separator-strong: oklch(0.8 0.008 70);
+  --focus-ring: oklch(0.566 0.089 197);
+
+  --column-stone-mark: oklch(0.688 0.009 70);
+  --column-stone-wash: oklch(0.894 0.007 70);
+  --column-amber-mark: oklch(0.566 0.107 85);
+  --column-amber-wash: oklch(0.94 0.019 85);
+  --column-moss-mark: oklch(0.566 0.164 145);
+  --column-moss-wash: oklch(0.94 0.032 145);
+  --column-sky-mark: oklch(0.566 0.099 225);
+  --column-sky-wash: oklch(0.94 0.012 225);
+  --column-indigo-mark: oklch(0.566 0.221 275);
+  --column-indigo-wash: oklch(0.94 0.009 275);
+  --column-plum-mark: oklch(0.566 0.25 320);
+  --column-plum-wash: oklch(0.94 0.014 320);
+  --column-rose-mark: oklch(0.566 0.214 355);
+  --column-rose-wash: oklch(0.94 0.01 355);
+}
+
+.dark {
+  --surface-canvas: oklch(0.135 0.006 70);
+  --surface-sunken: oklch(0.18 0.007 70);
+  --surface-raised: oklch(0.232 0.008 70);
+  --surface-overlay: oklch(0.288 0.009 70);
+  --surface-inset: oklch(0.18 0.007 70);
+  --surface-chrome: oklch(0.18 0.007 70);
+  --text-primary: oklch(0.976 0.004 70);
+  --text-secondary: oklch(0.894 0.007 70);
+  --text-tertiary: oklch(0.8 0.008 70);
+  --text-on-accent: oklch(0.135 0.006 70);
+  --text-on-danger: oklch(0.135 0.006 70);
+  --accent-text: oklch(0.822 0.09 197);
+  --accent-solid: oklch(0.822 0.09 197);
+  --accent-solid-hover: oklch(0.888 0.073 197);
+  --accent-soft: oklch(0.252 0.025 197);
+  --accent-soft-text: oklch(0.888 0.073 197);
+  --danger-text: oklch(0.822 0.064 25);
+  --danger-solid: oklch(0.822 0.064 25);
+  --danger-soft: oklch(0.252 0.06 25);
+  --danger-soft-text: oklch(0.888 0.028 25);
+  --caution-text: oklch(0.822 0.074 55);
+  --caution-soft: oklch(0.252 0.037 55);
+  --caution-line: oklch(0.398 0.081 55);
+  --separator: oklch(0.352 0.01 70);
+  --separator-strong: oklch(0.452 0.01 70);
+  --focus-ring: oklch(0.822 0.09 197);
+
+  --column-stone-mark: oklch(0.688 0.009 70);
+  --column-stone-wash: oklch(0.352 0.01 70);
+  --column-amber-mark: oklch(0.748 0.12 85);
+  --column-amber-wash: oklch(0.252 0.03 85);
+  --column-moss-mark: oklch(0.748 0.184 145);
+  --column-moss-wash: oklch(0.252 0.046 145);
+  --column-sky-mark: oklch(0.748 0.111 225);
+  --column-sky-wash: oklch(0.252 0.028 225);
+  --column-indigo-mark: oklch(0.748 0.101 275);
+  --column-indigo-wash: oklch(0.252 0.092 275);
+  --column-plum-mark: oklch(0.748 0.166 320);
+  --column-plum-wash: oklch(0.252 0.071 320);
+  --column-rose-mark: oklch(0.748 0.135 355);
+  --column-rose-wash: oklch(0.252 0.06 355);
+}
+
+/* Users who ask for more contrast get a wider foreground/background lightness
+   gap, not just a heavier border. */
+@media (prefers-contrast: more) {
+  :root {
+    --text-secondary: oklch(0.352 0.01 70);
+    --text-tertiary: oklch(0.452 0.01 70);
+    --accent-text: oklch(0.398 0.056 197);
+    --accent-solid: oklch(0.398 0.056 197);
+    --danger-text: oklch(0.398 0.132 25);
+    --separator: oklch(0.688 0.009 70);
+    --separator-strong: oklch(0.525 0.01 70);
+  }
+
+  .dark {
+    --text-secondary: oklch(0.96 0.005 70);
+    --text-tertiary: oklch(0.894 0.007 70);
+    --accent-text: oklch(0.822 0.09 197);
+    --separator: oklch(0.452 0.01 70);
+    --separator-strong: oklch(0.525 0.01 70);
+  }
+}
+
+@theme inline {
+  --color-canvas: var(--surface-canvas);
+  --color-sunken: var(--surface-sunken);
+  --color-raised: var(--surface-raised);
+  --color-overlay: var(--surface-overlay);
+  --color-inset: var(--surface-inset);
+  --color-chrome: var(--surface-chrome);
+  --color-ink: var(--text-primary);
+  --color-ink-soft: var(--text-secondary);
+  --color-ink-faint: var(--text-tertiary);
+  --color-on-accent: var(--text-on-accent);
+  --color-on-danger: var(--text-on-danger);
+  --color-accent: var(--accent-text);
+  --color-accent-solid: var(--accent-solid);
+  --color-accent-solid-hover: var(--accent-solid-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-ink: var(--accent-soft-text);
+  --color-danger: var(--danger-text);
+  --color-danger-solid: var(--danger-solid);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-soft-ink: var(--danger-soft-text);
+  --color-caution: var(--caution-text);
+  --color-caution-soft: var(--caution-soft);
+  --color-caution-line: var(--caution-line);
+  --color-line: var(--separator);
+  --color-line-strong: var(--separator-strong);
+  --color-focus: var(--focus-ring);
+
+  --color-column-stone-mark: var(--column-stone-mark);
+  --color-column-stone-wash: var(--column-stone-wash);
+  --color-column-amber-mark: var(--column-amber-mark);
+  --color-column-amber-wash: var(--column-amber-wash);
+  --color-column-moss-mark: var(--column-moss-mark);
+  --color-column-moss-wash: var(--column-moss-wash);
+  --color-column-sky-mark: var(--column-sky-mark);
+  --color-column-sky-wash: var(--column-sky-wash);
+  --color-column-indigo-mark: var(--column-indigo-mark);
+  --color-column-indigo-wash: var(--column-indigo-wash);
+  --color-column-plum-mark: var(--column-plum-mark);
+  --color-column-plum-wash: var(--column-plum-wash);
+  --color-column-rose-mark: var(--column-rose-mark);
+  --color-column-rose-wash: var(--column-rose-wash);
+}

@@ -1,0 +1,112 @@
+/* Tokens and base for the office chrome. Owned by the UI shell.
+   The scene draws its own colors; these are for panels, chat and forms. Dark only.
+   The imported sheets come before this file's own rules in the cascade, so this file holds
+   only tokens and element rules; every class lives in the imports, controls first. */
+@import url('./controls.css');
+@import url('./shell.css');
+@import url('./room.css');
+@import url('./form.css');
+@import url('./views.css');
+
+:root {
+  color-scheme: dark;
+
+  /* Surfaces, from the ground up. */
+  --bg: #15171e;
+  --bg-elev: #1d2029;
+  --panel: rgba(29, 32, 41, 0.92);
+  --surface: #1d2029;
+  --surface-2: #252833;
+  --surface-3: #2e3240;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.13);
+
+  /* Text. Faint passes AA on the surfaces for small meta text. */
+  --text: #f1efe8;
+  --text-dim: #a8a89f;
+  --text-faint: #8b8c85;
+  --on-light: #15171e;
+
+  --accent: #8b8cff;
+  --ok: #7cc47f;
+  --warn: #f0b35a;
+  --danger: #ef7c7c;
+
+  /* The seven department colors, matching Trella's palette; the scene uses the same names. */
+  --dept-stone: #b7b1a6;
+  --dept-amber: #e6b455;
+  --dept-moss: #7fb069;
+  --dept-sky: #6cb4e4;
+  --dept-indigo: #8b8cff;
+  --dept-plum: #b784d8;
+  --dept-rose: #e58a9a;
+  /* The open department's color; the room panel sets it. */
+  --dept: var(--accent);
+
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-md: 13px;
+  --text-base: 14px;
+  --text-lg: 16px;
+  --text-xl: 18px;
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+
+  /* Layered elevation for dark surfaces: a lit rim, then soft drop layers that grow. */
+  --rim: inset 0 1px 0 0 rgba(255, 255, 255, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.3);
+  --shadow-float: var(--rim), 0 1px 1px -0.5px rgba(0, 0, 0, 0.2), 0 3px 3px -1.5px rgba(0, 0, 0, 0.2), 0 6px 6px -3px rgba(0, 0, 0, 0.2);
+  --shadow-panel: var(--shadow-float), 0 12px 12px -6px rgba(0, 0, 0, 0.2), 0 24px 24px -12px rgba(0, 0, 0, 0.2);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --fast: 140ms;
+
+  /* Layout. */
+  --gap: 16px;
+  --topbar-h: 60px;
+  --lobby-w: 248px;
+  --side-w: clamp(360px, 29vw, 420px);
+  --sheet-h: 60dvh;
+}
+
+/* Narrow tokens live here, after :root: the imported sheets come first in the cascade,
+   so an override there would lose to the values above. */
+@media (max-width: 899px) {
+  :root { --topbar-h: 56px; --strip-h: 42px; --gap: 12px; --sheet-h: 64dvh; }
+  /* On a phone the bar and the lobby strip are solid, and the scene fills the space below them. */
+  #scene { top: calc(var(--topbar-h) + var(--strip-h)); }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 400 var(--text-base) / 1.45 var(--font);
+  letter-spacing: 0.005em;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#app { position: relative; width: 100%; height: 100%; }
+/* Each layer is its own stacking context: the scene's labels carry z-indexes of their own
+   (CSS2DRenderer sorts them by depth), and they must stay under the chrome. */
+#scene { position: absolute; inset: 0; z-index: 0; }
+#scene canvas { display: block; }
+#ui { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+h1, h2, h3, p { margin: 0; }
+button, input, textarea, select { font: inherit; color: inherit; letter-spacing: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: default; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--dept); outline-offset: 2px; }
+
+* { scrollbar-width: thin; scrollbar-color: rgba(255, 255, 255, 0.14) transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}

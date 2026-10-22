@@ -1,0 +1,73 @@
+{
+  "name": "affice",
+  "version": "0.1.0",
+  "description": "A local 3D office for your Claude Code agents: one room per department, a manager agent in each room, subagents at desks, and a Trella board for the work.",
+  "license": "MIT",
+  "type": "module",
+  "keywords": [
+    "claude-code",
+    "agents",
+    "ai-agents",
+    "multi-agent",
+    "kanban",
+    "trella",
+    "mcp",
+    "three",
+    "local-first"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thePlane-ai/Affice.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thePlane-ai/Affice/issues"
+  },
+  "homepage": "https://github.com/thePlane-ai/Affice#readme",
+  "bin": {
+    "affice": "bin/affice.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "README.md",
+    "LICENSE",
+    "INSTALL.md",
+    "llms.txt"
+  ],
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "workspaces": [
+    "vendor/trella/packages/*",
+    "vendor/trella/apps/*"
+  ],
+  "scripts": {
+    "start": "node bin/affice.js",
+    "dev:all": "bash start.sh",
+    "dev": "vite --port 5190 --strictPort",
+    "server": "AFFICE_DEV_ORIGIN=${AFFICE_DEV_ORIGIN:-http://localhost:5190} tsx watch server/index.ts",
+    "affice": "node bin/affice.js",
+    "trella": "node vendor/trella/packages/cli/bin/trella.js",
+    "clean": "node -e \"require('node:fs').rmSync('dist', { recursive: true, force: true })\"",
+    "build:trella": "npm run build --workspace @trella/core && npm run build --workspace @trella/server && npm run build --workspace @trella/mcp && npm run build --workspace trella && npm run build --workspace @trella/web",
+    "build:client": "vite build",
+    "build:server": "node scripts/build-server.mjs",
+    "build": "npm run clean && npm run typecheck && npm run build:trella && npm run build:client && npm run build:server",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "node --import tsx --test \"server/**/*.test.ts\" \"client/**/*.test.ts\" \"shared/**/*.test.ts\"",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/three": "^0.170.0",
+    "@types/ws": "^8.5.13",
+    "esbuild": "^0.28.2",
+    "three": "^0.170.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vite": "^7.1.12"
+  }
+}

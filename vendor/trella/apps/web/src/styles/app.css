@@ -1,0 +1,322 @@
+@import 'tailwindcss';
+@import './tokens.css';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans:
+    'Instrument Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Concentric radii. See DESIGN.md §5.3: outer = inner + padding. */
+  --radius-chip: 4px;
+  --radius-field: 8px;
+  --radius-control: 10px;
+  --radius-card: 12px;
+  --radius-column: 18px; /* card 12 + column padding 6 */
+  --radius-panel: 20px; /* card 12 + panel padding 8 */
+
+  --ease-trella: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Depth is a ring plus two soft layers. Dark mode drops the layers, which are
+   invisible there, and keeps the ring. */
+:root {
+  --lift-1:
+    0 0 0 1px oklch(0 0 0 / 0.06), 0 1px 2px -1px oklch(0 0 0 / 0.06),
+    0 2px 4px 0 oklch(0 0 0 / 0.04);
+  --lift-2:
+    0 0 0 1px oklch(0 0 0 / 0.08), 0 1px 2px -1px oklch(0 0 0 / 0.08),
+    0 2px 4px 0 oklch(0 0 0 / 0.06);
+  --lift-3:
+    0 0 0 1px oklch(0 0 0 / 0.07), 0 12px 24px -8px oklch(0 0 0 / 0.18),
+    0 4px 8px -4px oklch(0 0 0 / 0.12);
+  --lift-panel:
+    0 0 0 1px oklch(0 0 0 / 0.06), 0 24px 48px -16px oklch(0 0 0 / 0.2),
+    0 8px 16px -8px oklch(0 0 0 / 0.1);
+  --hairline: oklch(0 0 0 / 0.1);
+}
+
+.dark {
+  --lift-1: 0 0 0 1px oklch(1 0 0 / 0.08);
+  --lift-2: 0 0 0 1px oklch(1 0 0 / 0.13);
+  --lift-3: 0 0 0 1px oklch(1 0 0 / 0.16), 0 16px 32px -12px oklch(0 0 0 / 0.6);
+  --lift-panel: 0 0 0 1px oklch(1 0 0 / 0.1), 0 24px 48px -16px oklch(0 0 0 / 0.7);
+  --hairline: oklch(1 0 0 / 0.1);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--surface-canvas);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.55;
+    overscroll-behavior: none;
+  }
+
+  /* Keep the browser's own indicator where we can; give it room to breathe. */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  ::selection {
+    background-color: var(--accent-soft);
+    color: var(--accent-soft-text);
+  }
+
+  ::placeholder {
+    color: var(--text-tertiary);
+  }
+
+  img {
+    outline: 1px solid var(--hairline);
+    outline-offset: -1px;
+  }
+
+  [type='text'],
+  [type='search'],
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* iOS zooms any field below 16px; only relax that on a real pointer viewport. */
+  input,
+  textarea {
+    font-size: 16px;
+  }
+  @media (min-width: 640px) {
+    input,
+    textarea {
+      font-size: 14px;
+    }
+  }
+}
+
+@layer components {
+  .surface-card {
+    background-color: var(--surface-raised);
+    box-shadow: var(--lift-1);
+  }
+
+  .text-micro {
+    font-size: 12px;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .text-caption {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  .text-ui {
+    font-size: 14px;
+    line-height: 1.45;
+    font-weight: 500;
+  }
+
+  .text-body {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .text-heading {
+    font-size: 17px;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+
+  .text-title {
+    font-size: 22px;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .text-display {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  /* Long-form text inside a card keeps a comfortable measure. */
+  .prose-trella {
+    max-width: 68ch;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    text-wrap: pretty;
+  }
+
+  .prose-trella code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background-color: var(--surface-inset);
+    border-radius: var(--radius-chip);
+    padding: 0.1em 0.3em;
+  }
+}
+
+/* Motion is opt-in. Everything below only runs when the user has not asked for
+   less of it; the static styles above already communicate every state. */
+@media (prefers-reduced-motion: no-preference) {
+  .motion-lift {
+    transition-property: box-shadow, background-color;
+    transition-duration: 120ms;
+    transition-timing-function: ease-out;
+  }
+
+  .motion-press {
+    transition-property: scale, background-color, color, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+  }
+
+  .motion-press:active:not(:disabled) {
+    scale: 0.96;
+  }
+
+  .motion-panel {
+    animation: panel-in 260ms ease-out both;
+  }
+
+  .motion-fade {
+    animation: fade-in 200ms ease-out both;
+  }
+
+  .motion-stagger > * {
+    animation: rise-in 400ms ease-out both;
+  }
+  .motion-stagger > *:nth-child(1) {
+    animation-delay: 0ms;
+  }
+  .motion-stagger > *:nth-child(2) {
+    animation-delay: 100ms;
+  }
+  .motion-stagger > *:nth-child(3) {
+    animation-delay: 200ms;
+  }
+  .motion-stagger > *:nth-child(4) {
+    animation-delay: 300ms;
+  }
+
+  .motion-touched::after {
+    animation: touched 1200ms ease-out both;
+  }
+}
+
+/* Someone else changed this card while it was on screen. The content update is
+   the real signal; this only draws the eye to where it happened. */
+.motion-touched::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 2px;
+  border-start-start-radius: var(--radius-card);
+  border-end-start-radius: var(--radius-card);
+  background-color: var(--accent-solid);
+  opacity: 0;
+}
+
+@keyframes touched {
+  0% {
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton {
+  background-image: linear-gradient(
+    90deg,
+    var(--surface-inset) 0%,
+    var(--surface-raised) 40%,
+    var(--surface-inset) 80%
+  );
+  background-size: 200% 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton {
+    animation: shimmer 1600ms linear infinite;
+  }
+}
+
+/* Scrollbars: present, quiet, and not a decoration. */
+.scroll-quiet {
+  scrollbar-width: thin;
+  scrollbar-color: var(--separator-strong) transparent;
+}
+.scroll-quiet::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.scroll-quiet::-webkit-scrollbar-thumb {
+  background-color: var(--separator-strong);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+.scroll-quiet::-webkit-scrollbar-track {
+  background: transparent;
+}

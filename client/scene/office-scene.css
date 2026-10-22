@@ -1,0 +1,268 @@
+/* The scene's own HTML: speech bubbles (CSS2D), room labels, wall boards and the lobby sign (CSS3D).
+   CSS3D text is laid out at 100 px per unit, so its font sizes read as hundredths of a meter. */
+
+.office-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* The part of the view the chrome leaves free. The camera frames rooms, agents and the building
+   inside it. The chrome sets the four --office-safe-* lengths on the scene container; the defaults
+   below follow the shell's tokens (top bar, and the room panel on wide screens) and fall back to
+   the whole view when those tokens are missing. */
+.office-safe {
+  position: absolute;
+  top: var(--office-safe-top, 0px);
+  right: var(--office-safe-right, 0px);
+  bottom: var(--office-safe-bottom, 0px);
+  left: var(--office-safe-left, 0px);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#scene {
+  --office-safe-top: var(--topbar-h, 0px);
+}
+
+@media (min-width: 900px) {
+  body.has-room #scene {
+    --office-safe-right: calc(var(--side-w, 0px) + 2 * var(--gap, 0px));
+  }
+}
+
+/* Speech bubbles */
+
+.office-bubble {
+  padding-bottom: 9px;
+  pointer-events: none;
+  font-family: var(--font, system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+.ob-card {
+  position: relative;
+  box-sizing: border-box;
+  width: 218px;
+  padding: 8px 11px 9px;
+  border-radius: 11px;
+  background: rgba(22, 24, 31, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.32);
+  color: #f1efe8;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.ob-card::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 9px;
+  height: 9px;
+  background: rgb(22, 24, 31);
+  border-right: 1px solid rgba(255, 255, 255, 0.09);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.ob-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10.5px;
+  line-height: 14px;
+  color: #a8a89f;
+}
+
+.ob-key {
+  font-family: var(--mono, ui-monospace, monospace);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.ob-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #a8a89f;
+}
+
+.ob-chip::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.ob-chip[data-status='working'] { color: #7cc47f; }
+.ob-chip[data-status='thinking'] { color: #a9aaff; }
+.ob-chip[data-status='arriving'] { color: #6cb4e4; }
+.ob-chip[data-status='waiting'] { color: #f0b35a; }
+.ob-chip[data-status='done'] { color: #7cc47f; }
+.ob-chip[data-status='failed'] { color: #ef7c7c; }
+
+.ob-title {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.28;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ob-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 5px;
+  font-size: 10.5px;
+  line-height: 14px;
+  color: #8f8f87;
+}
+
+.ob-detail {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ob-model {
+  flex: none;
+  white-space: nowrap;
+}
+
+.office-bubble.is-chip .ob-card {
+  width: auto;
+  padding: 3px 9px 3px 8px;
+  border-radius: 999px;
+}
+
+.office-bubble.is-chip .ob-card::after {
+  bottom: -4px;
+  width: 7px;
+  height: 7px;
+}
+
+.office-bubble.is-chip .ob-key,
+.office-bubble.is-chip .ob-title,
+.office-bubble.is-chip .ob-foot {
+  display: none;
+}
+
+/* Room name labels, lying on the ground in front of each room */
+
+.office-room-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  font-family: var(--font, system-ui, sans-serif);
+  color: #f1efe8;
+  -webkit-font-smoothing: antialiased;
+}
+
+.orl-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 100%;
+  font-size: 44px;
+  font-weight: 650;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.orl-dot {
+  flex: none;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+}
+
+.orl-sub {
+  padding-left: 31px;
+  font-size: 25px;
+  color: #a8a89f;
+  white-space: nowrap;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.office-room-label.on-floor { color: #2f323b; }
+.office-room-label.on-floor .orl-sub { color: #6f6a61; }
+
+/* The board on each room's wall */
+
+.office-board {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.obd-name {
+  max-width: 186px;
+  padding-bottom: 5px;
+  border-bottom: 3px solid;
+  font-family: var(--font, system-ui, sans-serif);
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #f1efe8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The company name in the lobby */
+
+.office-sign {
+  width: 440px;
+  text-align: center;
+  font-family: var(--font, system-ui, sans-serif);
+  font-size: 66px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #2f323b;
+}
+
+/* The name plate on the reception counter */
+
+.office-plate {
+  width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font, system-ui, sans-serif);
+  font-size: 24px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  color: #2f323b;
+  white-space: nowrap;
+  pointer-events: auto;
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+}
+
+.opl-dot {
+  flex: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}

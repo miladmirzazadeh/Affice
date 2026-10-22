@@ -1,0 +1,12 @@
+# Affice
+
+> Affice is a local web app that turns a project into a virtual office for the user's own Claude Code agents. Each department is a room with a manager (a real Claude Code session on the user's own sign-in), its subagents sit at desks, and a Trella board holds the work. It runs on 127.0.0.1 only, is published on npm as `affice`, and is started with `npx affice`. It needs Node.js 22.5 or newer and Claude Code signed in with a Claude subscription.
+
+To install and start it for a user, read INSTALL.md and follow it. It is written for agents: numbered steps, exact commands, `npx affice doctor --json` to find what is missing, and a list of what not to do (never sign in for the user, no sudo, no global installs without asking).
+
+- [INSTALL.md](https://raw.githubusercontent.com/thePlane-ai/Affice/main/INSTALL.md): the install guide for agents
+- [README.md](https://raw.githubusercontent.com/thePlane-ai/Affice/main/README.md): what Affice is, how it works, configuration, safety, troubleshooting
+- [docs/ARCHITECTURE.md](https://raw.githubusercontent.com/thePlane-ai/Affice/main/docs/ARCHITECTURE.md): the server, the host, the seams, the protocol, the data views, the scene and the wire contract
+- [CONTRIBUTING.md](https://raw.githubusercontent.com/thePlane-ai/Affice/main/CONTRIBUTING.md): setup, scripts, tests and code style
+- [SECURITY.md](https://raw.githubusercontent.com/thePlane-ai/Affice/main/SECURITY.md): how to report a vulnerability, what is in scope, and the known limitations of the beta
+- [shared/types.ts](https://raw.githubusercontent.com/thePlane-ai/Affice/main/shared/types.ts): the wire contract between the server and the page

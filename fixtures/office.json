@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "company": "Acme Studio",
+  "trellaUrl": "http://localhost:4174",
+  "departments": [
+    {
+      "id": "general",
+      "kind": "lobby",
+      "name": "General manager",
+      "color": "stone",
+      "responsibility": "Answer general questions about the project: where we stand, what is decided, what is blocked, what to look at next. When a question belongs to a department, ask its manager and bring the answer back. Be candid and short.",
+      "cwd": ".",
+      "model": "opus",
+      "permission": "read-only",
+      "repos": [],
+      "reportDirs": [
+        "reports"
+      ],
+      "trellaBoardId": null,
+      "sessionId": null,
+      "slot": -1,
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "engineering",
+      "name": "Engineering",
+      "color": "indigo",
+      "responsibility": "Build and maintain the product. Keep the department's board current: every piece of work is a card with acceptance criteria. Delegate the work to subagents, review what comes back, and report progress in a few lines. Ask the user only for real decisions.",
+      "cwd": ".",
+      "model": "sonnet",
+      "permission": "ask",
+      "repos": [],
+      "reportDirs": [
+        "reports"
+      ],
+      "trellaBoardId": null,
+      "sessionId": null,
+      "slot": 0,
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "marketing",
+      "name": "Marketing",
+      "color": "rose",
+      "responsibility": "Plan and write what tells people about the product: launch posts, the website copy and the newsletter. Keep the department's board current, delegate drafts to subagents, review them, and report progress in a few lines. Ask the user for approval before anything is published.",
+      "cwd": ".",
+      "model": "sonnet",
+      "permission": "read-only",
+      "repos": [],
+      "reportDirs": [
+        "reports"
+      ],
+      "trellaBoardId": null,
+      "sessionId": null,
+      "slot": 1,
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    }
+  ]
+}
